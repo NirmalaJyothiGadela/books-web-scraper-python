@@ -9,8 +9,8 @@ base_url = "http://books.toscrape.com/catalogue/page-{}.html"
 
 all_books = []
 
-
-for page in range(1, 51):   # site has 50 pages
+# site has 50 pages
+for page in range(1, 51):
     
     url = base_url.format(page)
     response = requests.get(url)
@@ -27,9 +27,11 @@ for page in range(1, 51):   # site has 50 pages
     print(f"Page {page} scraped")
 
 
+# creating csv file
 with open("books_dataset.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerow(["Title","Price"])
     writer.writerows(all_books)
+
 
 print(f"Done! Saved {len(all_books)} books to CSV")
